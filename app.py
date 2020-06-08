@@ -12,7 +12,7 @@ app = flask.Flask(__name__, template_folder='templates')
 
 @app.route('/')
 def hello_world():
-    return flask.render_template("index.html")
+    return flask.render_template("index.html",pred="",val="")
 
 @app.route('/clas',methods=['POST'])
 def clas():
@@ -22,6 +22,6 @@ def clas():
 
 		result=model.classify(dict([token,True] for token in tok))
 		#return redirect('/')
-		return render_template('index.html',pred=result)
+		return render_template('index.html',val=text,pred=result)
 if __name__ == '__main__':
 	app.run(debug=True)
